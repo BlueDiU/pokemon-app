@@ -9,19 +9,21 @@ interface IProps {
 
 const PokemonPage: NextPage<IProps> = ({ pokemon }) => {
   return (
-    <Layout>
+    <Layout title="algun pókemon">
       <h1>{pokemon.name}</h1>
     </Layout>
   );
 };
 
+// You should use getStaticPaths if you’re statically pre-rendering pages that use dynamic routes
+
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  const pokemon151 = [...Array(151)].map(
+  const pokemons151 = [...Array(50)].map(
     (value, index) => `${index + 1}`
   );
 
   return {
-    paths: pokemon151.map((id) => ({
+    paths: pokemons151.map((id) => ({
       params: { id },
     })),
     fallback: false,
@@ -36,7 +38,9 @@ export const getStaticProps: GetStaticProps = async ({
   const { data } = await pokeApi.get<Pokemon>(`/pokemon/${id}`);
 
   return {
-    props: { pokemon: data },
+    props: {
+      pokemon: data,
+    },
   };
 };
 
