@@ -7,18 +7,31 @@ import {
   Image,
 } from '@nextui-org/react';
 import { GetStaticProps, NextPage, GetStaticPaths } from 'next';
+import { useEffect, useState } from 'react';
 
 import { pokeApi } from '../../api';
 import { Layout } from '../../components/layouts';
 import { Pokemon } from '../../interfaces';
+import { localFavorites } from '../../utils';
 
 interface IProps {
   pokemon: Pokemon;
 }
 
 const PokemonPage: NextPage<IProps> = ({ pokemon }) => {
+  const [isInFavorites, setIsInFavorites] = useState(false);
+
+  const onToggleFavorite = () => {
+    localFavorites.toggleFavorite(pokemon.id);
+    setIsInFavorites(!isInFavorites);
+  };
+
+  useEffect(() => {
+    setIsInFavorites(localFavorites.existFavorites(pokemon.id));
+  }, [pokemon.id]);
+
   return (
-    <Layout title="algun pókemon">
+    <Layout title={pokemon.name}>
       <Grid.Container css={{ marginTop: '5px' }} gap={2}>
         <Grid xs={12} sm={4}>
           <Card isHoverable css={{ padding: '30px' }}>
@@ -47,8 +60,14 @@ const PokemonPage: NextPage<IProps> = ({ pokemon }) => {
               <Text h1 transform="capitalize">
                 {pokemon.name}
               </Text>
-              <Button color="gradient" ghost>
-                Guardar en favoritos
+              <Button
+                color="gradient"
+                ghost={!isInFavorites}
+                onClick={onToggleFavorite}
+              >
+                {isInFavorites
+                  ? 'En favoritos'
+                  : 'Guardar en favoritos'}
               </Button>
             </Card.Header>
             <Card.Body>
@@ -95,7 +114,7 @@ const PokemonPage: NextPage<IProps> = ({ pokemon }) => {
 // You should use getStaticPaths if you’re statically pre-rendering pages that use dynamic routes
 
 export const getStaticPaths: GetStaticPaths = async (ctx) => {
-  const pokemons151 = [...Array(50)].map(
+  const pokemons151 = [...Array(20)].map(
     (value, index) => `${index + 1}`
   );
 
