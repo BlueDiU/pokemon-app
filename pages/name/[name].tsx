@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
+
 import {
   Button,
   Card,
@@ -7,12 +10,12 @@ import {
   Text,
 } from '@nextui-org/react';
 import confetti from 'canvas-confetti';
-import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
-import { useEffect, useState } from 'react';
-import { pokeApi } from '../../api';
-import { Layout } from '../../components/layouts';
+
 import { Pokemon, PokemonListResponse } from '../../interfaces';
 import { getPokemonInfo, localFavorites } from '../../utils';
+import { pokeApi } from '../../api';
+
+import { Layout } from '../../components/layouts';
 
 interface IProps {
   pokemon: Pokemon;

@@ -1,6 +1,7 @@
-import { Link, Spacer, Text, useTheme } from '@nextui-org/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
+
+import { Link, Spacer, Text, useTheme } from '@nextui-org/react';
 
 export const Navbar = () => {
   const { theme } = useTheme();

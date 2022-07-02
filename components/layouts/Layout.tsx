@@ -1,11 +1,15 @@
-import Head from 'next/head';
 import { ReactNode } from 'react';
+
+import Head from 'next/head';
 import { Navbar } from '../ui';
 
 interface IProps {
   children: ReactNode;
   title?: string;
 }
+
+const origin =
+  typeof window === 'undefined' ? '' : window.location.origin;
 
 export const Layout = ({ children, title }: IProps) => {
   return (
@@ -20,6 +24,19 @@ export const Layout = ({ children, title }: IProps) => {
         <meta
           name="keywords"
           content={`${title}, pokemon, pokedex`}
+        />
+
+        <meta
+          property="og:title"
+          content={`Información sobre ${title}`}
+        />
+        <meta
+          property="og:description"
+          content={`Pagina sobre ${title}`}
+        />
+        <meta
+          property="og:image"
+          content={`${origin}/img/banner.png`}
         />
       </Head>
       <Navbar />

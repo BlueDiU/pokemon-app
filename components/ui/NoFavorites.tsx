@@ -1,5 +1,4 @@
 import { Container, Image, Text } from '@nextui-org/react';
-import React from 'react';
 
 export const NoFavorites = () => {
   return (

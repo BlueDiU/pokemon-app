@@ -1,5 +1,5 @@
 import { NextPage, GetStaticProps } from 'next';
-import { Layout } from '../components/layouts';
+import { Grid } from '@nextui-org/react';
 
 import {
   PokemonListResponse,
@@ -7,7 +7,8 @@ import {
 } from '../interfaces';
 
 import { pokeApi } from '../api';
-import { Grid } from '@nextui-org/react';
+
+import { Layout } from '../components/layouts';
 import { PokemonCard } from '../components/pokemon';
 
 interface IProps {

@@ -1,6 +1,8 @@
-import { Card, Grid, Row, Text } from '@nextui-org/react';
 import { useRouter } from 'next/router';
+
 import { SmallPokemon } from '../../interfaces';
+
+import { Card, Grid, Row, Text } from '@nextui-org/react';
 
 interface IProps {
   pokemon: SmallPokemon;

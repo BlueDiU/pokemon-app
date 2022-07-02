@@ -11,7 +11,6 @@ import {
 
 import confetti from 'canvas-confetti';
 
-import { pokeApi } from '../../api';
 import { Layout } from '../../components/layouts';
 import { Pokemon } from '../../interfaces';
 import { getPokemonInfo, localFavorites } from '../../utils';

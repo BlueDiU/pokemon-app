@@ -1,10 +1,10 @@
-import { Card, Grid } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
+
+import { localFavorites } from '../../utils';
 
 import { Layout } from '../../components/layouts';
 import { FavoritePokemons } from '../../components/pokemon';
 import { NoFavorites } from '../../components/ui';
-import { localFavorites } from '../../utils';
 
 const FavoritesPage = () => {
   const [favoritesPokemon, setFavoritesPokemon] = useState<
